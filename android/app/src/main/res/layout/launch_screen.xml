@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#077C48"
+   android:paddingBottom="16dp"
+    >
+
+    <ImageView 
+    android:id="@+id/logo"
+    android:layout_width="180dp" 
+    android:layout_height="180dp" 
+    android:src="@drawable/launch_screen" 
+    android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/text_top"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="PERPUSTAKAAN DIGITAL"
+        android:textStyle="bold"
+        android:layout_above="@+id/text_bottom"
+        android:textSize="18sp"
+        android:textColor="#FFFFFF" />
+
+        <TextView
+        android:id="@+id/text_bottom"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="SD SWASTA SEHATI"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"/>
+
+</RelativeLayout>
