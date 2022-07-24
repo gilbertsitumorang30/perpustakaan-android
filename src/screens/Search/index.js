@@ -1,4 +1,11 @@
-import {StyleSheet, Text, View, ScrollView, SafeAreaView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  FlatList,
+  SafeAreaView,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {ListBuku, NavbarSearch} from '../../components';
 import {ms} from 'react-native-size-matters';
@@ -50,24 +57,25 @@ const Search = ({route, navigation}) => {
         onChage={getBuku}
         onBack={() => navigation.navigate('Home')}
       />
-      <ScrollView contentContainerStyle={styles.content}>
-        {listBuku.map(currentValue => {
-          return (
+      <SafeAreaView style={styles.content}>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={listBuku}
+          renderItem={({item, index}) => (
             <ListBuku
-              key={currentValue.id}
-              gambar={currentValue.foto}
-              judul={currentValue.judul}
-              kategori={currentValue.kategori}
-              stok={currentValue.stok}
-              penulis={currentValue.penulis}
-              penerbit={currentValue.penerbit}
-              onPress={() =>
-                navigation.navigate('Detail', {id: currentValue.id})
-              }
+              key={item.id}
+              gambar={item.foto}
+              judul={item.judul}
+              kategori={item.kategori}
+              stok={item.stok}
+              penulis={item.penulis}
+              penerbit={item.penerbit}
+              onPress={() => navigation.navigate('Detail', {id: item.id})}
             />
-          );
-        })}
-      </ScrollView>
+          )}
+          keyExtractor={item => item.id}
+        />
+      </SafeAreaView>
     </SafeAreaView>
   );
 };
@@ -82,5 +90,6 @@ const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
     padding: ms(12),
+    paddingBottom: ms(32),
   },
 });

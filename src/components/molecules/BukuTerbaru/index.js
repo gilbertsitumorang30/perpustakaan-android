@@ -50,7 +50,8 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primaryWhite,
   },
   image: {
-    flex: 1,
+    height: ms(100),
+    width: ms(80),
   },
   judul: {
     fontFamily: 'Poppins-Regular',

@@ -28,6 +28,7 @@ const Detail = ({route, navigation}) => {
   const [loading, setLoading] = useState(false);
   const [info, setInfo] = useState(false);
   const [sukses, setSukses] = useState(false);
+  const [message, setMessage] = useState('');
 
   const getDetailBuku = async () => {
     try {
@@ -69,9 +70,12 @@ const Detail = ({route, navigation}) => {
         });
         getDetailBuku();
         setSukses(true);
+        setMessage('Buku berhasil dipesan, silahkan ambil ke perpustakaan');
       }
     } catch (error) {
-      console.log('error pesan :', error.response);
+      console.log('error pesan :', error.response.data.msg);
+      setSukses(false);
+      setMessage(error.response.data.msg);
     } finally {
       setLoading(false);
       setInfo(true);
@@ -155,6 +159,10 @@ const Detail = ({route, navigation}) => {
               if (detailbuku.stok > 0) {
                 setVisible(true);
               } else {
+                setSukses(false);
+                setMessage(
+                  'Buku tidak tersedia, silahkan pesan saat buku tersedia',
+                );
                 setInfo(true);
               }
             } else {
@@ -165,15 +173,7 @@ const Detail = ({route, navigation}) => {
       </View>
       <LoadingOverlay loading={loading} />
       {info && (
-        <Info
-          sukses={sukses}
-          ok={() => setInfo(false)}
-          pesan={
-            sukses
-              ? 'Buku berhasil dipesan, silahkan ambil ke perpustakaan'
-              : 'Buku tidak tersedia, silahkan pesan saat buku tersedia'
-          }
-        />
+        <Info sukses={sukses} ok={() => setInfo(false)} pesan={message} />
       )}
     </SafeAreaView>
   );

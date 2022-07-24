@@ -142,7 +142,8 @@ const styles = StyleSheet.create({
     marginRight: ms(12),
   },
   image: {
-    flex: 1,
+    height: ms(80),
+    width: ms(60),
   },
 
   textContainer: {},
@@ -150,6 +151,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     fontSize: ms(12),
     color: colors.textDark,
+    width: ms(248),
   },
   kategori: {
     fontFamily: 'Poppins-Regular',

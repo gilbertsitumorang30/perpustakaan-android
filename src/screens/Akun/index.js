@@ -5,6 +5,7 @@ import {
   ScrollView,
   Image,
   TouchableOpacity,
+  Dimensions,
 } from 'react-native';
 import React, {useState} from 'react';
 import {AkunInput, DialogKonfirmasi} from '../../components';
@@ -29,6 +30,8 @@ const options = {
     includeBase64: false,
   },
 };
+
+const screen = Dimensions.get('window');
 
 const Akun = ({route, navigation}) => {
   const {anggota} = route.params;
@@ -180,7 +183,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   image: {
-    flex: 1,
+    height: ms(240),
+    width: screen.width,
   },
   content: {
     flex: 1,

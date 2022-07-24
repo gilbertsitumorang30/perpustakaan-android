@@ -22,12 +22,20 @@ import {ms} from 'react-native-size-matters';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'axios';
 import {baseUrl} from '../../helpers';
-import LoadingOverlay from '../../components/atoms/LoadingOverlay';
 
 const Home = ({navigation}) => {
   const [daftarKategori, setDaftarKategori] = useState([]);
   const [bukuTerbaru, setBukuTerbaru] = useState([]);
   const [listBuku, setListBuku] = useState([]);
+
+  const batalOtomatis = async () => {
+    try {
+      await axios.put(`${baseUrl}/peminjaman/batal`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const getKategori = async () => {
     try {
       const res = await axios.get(`${baseUrl}/kategori`);
@@ -48,7 +56,7 @@ const Home = ({navigation}) => {
 
   const getListBuku = async () => {
     try {
-      const res = await axios.get(`${baseUrl}/buku`);
+      const res = await axios.get(`${baseUrl}/buku/terdaftar?search`);
       setListBuku(res.data.data);
     } catch (error) {
       console.log(error.response.data);
@@ -71,6 +79,7 @@ const Home = ({navigation}) => {
   };
 
   useEffect(() => {
+    batalOtomatis();
     getKategori();
     getBukuTerbaru();
     getListBuku();

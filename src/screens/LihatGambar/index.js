@@ -1,6 +1,8 @@
-import {StyleSheet, Text, View, ImageBackground, Image} from 'react-native';
+import {View, ImageBackground, Dimensions} from 'react-native';
 import React from 'react';
 import {colors} from '../../res/colors';
+
+const screen = Dimensions.get('window');
 
 const LihatGambar = ({route}) => {
   return (
@@ -8,7 +10,7 @@ const LihatGambar = ({route}) => {
       <ImageBackground
         resizeMode="contain"
         source={{uri: route.params.gambar}}
-        style={{flex: 1}}
+        style={{width: screen.width, height: screen.height}}
       />
     </View>
   );

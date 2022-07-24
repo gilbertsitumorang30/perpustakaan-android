@@ -146,7 +146,8 @@ const styles = StyleSheet.create({
     marginBottom: ms(8),
   },
   fotoProfil: {
-    flex: 1,
+    height: ms(60),
+    width: ms(60),
   },
   nama: {
     color: colors.primaryWhite,
